@@ -3,7 +3,6 @@ package service
 import (
 	"bytes"
 	"context"
-	"fmt"
 	"go_pdf/config/yaml"
 	"go_pdf/internal/api/presenter"
 	"go_pdf/internal/pkg/pdf"
@@ -35,8 +34,6 @@ func (s *processor) PdfProcessor(ctx context.Context, imgByte []byte) *presenter
 	if err != nil {
 		response.WithCode(500).WithData("icikiwir")
 	}
-
-	fmt.Println("image to pdf --> ", imagetoPdf)
 
 	return response.WithCode(200).WithFile(bytes.NewBuffer(imagetoPdf))
 }
