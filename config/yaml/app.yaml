@@ -1,0 +1,6 @@
+app:
+  name: dsi-technical-test
+  port: 8083
+
+logger:
+  enable: false
