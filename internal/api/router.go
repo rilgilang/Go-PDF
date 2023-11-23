@@ -8,8 +8,8 @@ import (
 	"go_pdf/internal/service"
 )
 
-func NewRouter(cfg *yaml.Config) *fiber.App {
-	router := fiber.New()
+func NewRouter(app *fiber.App, cfg *yaml.Config) *fiber.App {
+	router := app
 
 	//processor
 	pdfProcessor := pdf.NewPdfProcessor()
@@ -21,10 +21,6 @@ func NewRouter(cfg *yaml.Config) *fiber.App {
 
 	//group
 	api := router.Group("/api")
-
-	router.Get("/", func(c *fiber.Ctx) error {
-		return c.Send([]byte("uwow"))
-	})
 
 	routes.ProcessorRoutes(api, cfg, authService)
 
