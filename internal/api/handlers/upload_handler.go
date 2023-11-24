@@ -20,6 +20,7 @@ func UploadHandler(cfg *yaml.Config, service service.Processor) fiber.Handler {
 
 		file, err := c.FormFile("file")
 		if err != nil {
+			fmt.Println("err 1 --> ", err)
 			return c.JSON(presenter.ErrorResponse(errors.New("error blok")))
 		}
 
@@ -27,7 +28,6 @@ func UploadHandler(cfg *yaml.Config, service service.Processor) fiber.Handler {
 		buffer, err := file.Open()
 
 		if err != nil {
-			fmt.Println("error get buffer")
 			return c.JSON(presenter.ErrorResponse(errors.New("error blok")))
 		}
 		defer buffer.Close()
@@ -43,7 +43,7 @@ func UploadHandler(cfg *yaml.Config, service service.Processor) fiber.Handler {
 			return c.JSON(presenter.ErrorResponse(serv.Errors))
 		}
 
-		filename := "icikiwir.pdf"
+		filename := "result.pdf"
 
 		c.Status(200)
 		c.Set(fiber.HeaderContentType, fiber.MIMEOctetStream)
